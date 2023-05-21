@@ -1,0 +1,110 @@
+/* MidiCue */
+.container-fluid {
+    height: 100vh;
+}
+.size1rem5 {
+    font-size: 1.5rem;
+}
+.size2rem {
+    font-size: 2rem;
+}
+.size3rem {
+    font-size: 3rem;
+}
+.size4rem {
+    font-size: 4rem;
+}
+.size5rem {
+    font-size: 5rem;
+}
+.size8rem {
+    font-size: 8rem;
+}
+.size10rem {
+    font-size: 10rem;
+}
+.hidden {
+    display: none !important;
+}
+.settingsFooter {
+    display: block;
+    width: 100%;
+}
+#footerToggle {
+    opacity: 0.5;
+}
+#footerToggle:hover {
+    opacity: 1;
+}
+.settingsContent {
+    display: block;
+    width: 100%;
+    border-bottom: 4px solid red;
+    background-color: #ff3d49;
+    height: 100vh;
+    padding: 10vh 5px 5px;
+    /* opacity: 0.9; */
+}
+
+#beatBeacon {
+    --interval: 500ms;
+    --defaultfill: #ffbf00;
+    --fill: var(--defaultfill);
+    opacity: 0;
+    animation-duration: var(--interval);
+    animation-name: pulseAndColorAnimation;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+    fill: var(--defaultfill);
+}
+
+.blink {
+    animation: blink 1500ms step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0.2 }
+}
+
+@keyframes pulseAndColorAnimation {
+    from { opacity: 1; fill: var(--fill); }
+    50%  { opacity: 0.1; fill: var(--fill); }
+    to   { opacity: 1; fill: var(--fill); }
+}
+
+@keyframes pulseAnimation {
+    from { opacity: 1;}
+    50%  { opacity: 0.4; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeOutAnimation {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+.electronDragRegion {
+    -webkit-app-region: drag;
+}
+.lh200 {
+    line-height: 200px !important;
+}
+.lh130 {
+    line-height: 130px !important;
+}
+#titlebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 24px;
+    /*background-color: #005cbf;*/
+    background-color: #762551;
+    -webkit-app-region: drag;
+}
+
+.noselect {
+    user-select: none;
+}
+

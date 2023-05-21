@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="dependencies/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="dependencies/css/midi.css">
+    <title>MIDItap</title>
+</head>
+<body>
+    <script src="dependencies/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="dependencies/js/lib/popper.min.js"></script>
+    <script src="dependencies/js/lib/bootstrap.min.js"></script>
+    <script src="dependencies/js/lib/webmidi.js"></script>
+    <script src="dependencies/js/midi.js"></script>
+
+    <div class="settingsFooter fixed-bottom float-right">
+        <div id="settingsFooterContent" class="d-flex flex-column text-center settingsContent text-dark">
+            <div class="pt-1 overflow-hidden w-auto">
+                <label for="midiInput" class="small text-monospace">In</label>
+                <select id="midiInput" class="small w-75">
+                    <option value="0" selected disabled>-no MIDI-In-</option>
+                </select>
+            </div>
+            <div class=" overflow-hidden w-auto">
+                <label for="midiOutput" class="small text-monospace">Out</label>
+                <select id="midiOutput" class="small w-75">
+                    <option value="0" selected disabled>-no MIDI-Out-</option>
+                </select>
+            </div>
+            <div class="">
+                <button class="btn btn-success btn-sm" id="settings-confirm-start-button">select and start</button>
+            </div>
+            <div class="text-danger text-monospace small">last in msg:
+                <span class="text-danger text-monospace" id="midimsg">none</span>
+            </div>
+            <div class="pl-2 fixed-bottom text-black-50 text-left small">MIDItap v1.1.0 <small>lclausing.com, 2023</small></div>
+
+        </div>
+    </div>
+    <div id="footerToggle" class="pr-2 fixed-bottom text-black-50 text-right">X</div>
+    <div id="titlebar"></div>
+
+    <div class="container-fluid bg-dark noselect">
+        <div class="row lh130">
+            <div class="col-2">
+                <div id="midileft" class="size2rem text-center text-white font-weight-bold text-monospace">
+                    <svg height="1rem" width="1rem">
+                        <circle id="beatBeacon" cx="50%" cy="50%" r=".5rem" fill-opacity="1" />
+                    </svg>
+                </div>
+            </div>
+            <div class="col-7 align-content-end electronDragRegion">
+                <div id="midicenter" class="size4rem align-content-end text-center text-white font-weight-bold text-monospace">
+                    0
+                </div>
+            </div>
+            <div class="col-3 align-content-end">
+                <div id="midiright" class="size2rem font-weight-bold text-center text-white text-monospace">
+                    <div id="tapButton" class="btn btn-outline-light">TAP</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

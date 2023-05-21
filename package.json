@@ -1,0 +1,37 @@
+{
+  "name": "miditap",
+  "version": "1.1.0",
+  "productName": "MIDItap",
+  "description": "MIDI tap generator",
+  "main": "index.js",
+  "author": "Lennart Clausing",
+  "license": "MIT",
+  "scripts": {
+    "test": "electron .",
+    "start": "electron .",
+    "pack": "electron-builder -mw --x64",
+    "dist": "electron-builder"
+  },
+  "private": true,
+  "devDependencies": {
+    "electron": "^24.3.1",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "com.lclausing.miditap",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "extraResources": "config"
+  },
+  "dependencies": {
+    "npm-check-updates": "^16.10.12",
+    "requirejs": "^2.3.6"
+  }
+}
