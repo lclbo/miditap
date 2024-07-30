@@ -14,7 +14,7 @@
   },
   "private": true,
   "devDependencies": {
-    "electron": "^29.1.5",
+    "electron": "^31.3.1",
     "electron-builder": "^24.13.3"
   },
   "build": {
@@ -31,7 +31,7 @@
     "extraResources": "config"
   },
   "dependencies": {
-    "npm-check-updates": "^16.14.18",
-    "requirejs": "^2.3.6"
+    "npm-check-updates": "^16.14.20",
+    "requirejs": "^2.3.7"
   }
 }
