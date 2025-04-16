@@ -14,8 +14,8 @@
   },
   "private": true,
   "devDependencies": {
-    "electron": "^31.3.1",
-    "electron-builder": "^24.13.3"
+    "electron": "^35.1.5",
+    "electron-builder": "^26.0.12"
   },
   "build": {
     "appId": "com.lclausing.miditap",
@@ -31,7 +31,7 @@
     "extraResources": "config"
   },
   "dependencies": {
-    "npm-check-updates": "^16.14.20",
+    "npm-check-updates": "^17.1.18",
     "requirejs": "^2.3.7"
   }
 }
