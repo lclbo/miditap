@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Align with .npmrc min-release-age=14
+    cooldown:
+      default-days: 14

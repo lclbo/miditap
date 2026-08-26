@@ -1,39 +1,57 @@
-const {app, BrowserWindow} = require('electron');
-const path = require('path');
-const url = require('url');
+const { app, BrowserWindow, powerSaveBlocker } = require("electron");
+const path = require("node:path");
+const { pathToFileURL } = require("node:url");
 
-let winRef;
-function createWindow () {
+/** @type {BrowserWindow | null} */
+let winRef = null;
+let powerSaveBlockerId = null;
+
+function createWindow() {
   winRef = new BrowserWindow({
     width: 300,
     height: 130,
-    titleBarStyle: 'hidden'
+    resizable: false,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    alwaysOnTop: true,
+    backgroundColor: "#1a1a1a",
+    webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: false,
+      sandbox: true,
+      // Keep setTimeout cadence accurate while the window is backgrounded/minimized
+      backgroundThrottling: false,
+    },
   });
- winRef.setAlwaysOnTop(true);
-  // winRef.webContents.openDevTools();
-  winRef.loadURL(url.format({
-    pathname: path.join(__dirname, 'www/midi.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
 
-  winRef.on('closed', () => {
+  // Prevent OS timer coalescing / app suspension that desynchronizes tap trains
+  if (powerSaveBlockerId === null) {
+    powerSaveBlockerId = powerSaveBlocker.start("prevent-app-suspension");
+  }
+
+  winRef.loadURL(pathToFileURL(path.join(__dirname, "www", "midi.html")).href);
+
+  winRef.on("closed", () => {
     winRef = null;
-  })
+  });
 }
 
-app.on('ready', () => {
+app.whenReady().then(() => {
   createWindow();
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
 });
 
-app.on('window-all-closed', () => {
-  if (!process.platform.includes('darwin')) {
-    app.quit();
+app.on("window-all-closed", () => {
+  if (powerSaveBlockerId !== null && powerSaveBlocker.isStarted(powerSaveBlockerId)) {
+    powerSaveBlocker.stop(powerSaveBlockerId);
+    powerSaveBlockerId = null;
   }
-});
-
-app.on('activate', () => {
-  if (winRef === null) {
-    createWindow();
+  if (process.platform !== "darwin") {
+    app.quit();
   }
 });

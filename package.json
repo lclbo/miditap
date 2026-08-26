@@ -1,37 +1,43 @@
 {
   "name": "miditap",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "productName": "MIDItap",
-  "description": "MIDI tap generator",
+  "description": "MIDI tap-tempo generator",
   "main": "index.js",
   "author": "Lennart Clausing",
   "license": "MIT",
-  "scripts": {
-    "test": "electron .",
-    "start": "electron .",
-    "pack": "electron-builder -mw --x64",
-    "dist": "electron-builder"
-  },
   "private": true,
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=11.10.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder -mw",
+    "dist": "electron-builder",
+    "check:supply-chain": "node scripts/check-release-age.mjs"
+  },
   "devDependencies": {
-    "electron": "^35.1.5",
-    "electron-builder": "^26.0.12"
+    "electron": "43.4.0",
+    "electron-builder": "26.15.7"
   },
   "build": {
     "appId": "com.lclausing.miditap",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64", "x64"]
+        }
+      ]
     },
     "win": {
       "target": [
         "nsis",
         "portable"
       ]
-    },
-    "extraResources": "config"
-  },
-  "dependencies": {
-    "npm-check-updates": "^17.1.18",
-    "requirejs": "^2.3.7"
+    }
   }
 }
