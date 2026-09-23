@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "electron": "43.4.0",
-    "electron-builder": "26.15.7"
+    "electron-builder": "26.16.1"
   },
   "build": {
     "appId": "com.lclausing.miditap",
