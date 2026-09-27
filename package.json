@@ -19,7 +19,7 @@
     "check:supply-chain": "node scripts/check-release-age.mjs"
   },
   "devDependencies": {
-    "electron": "43.4.0",
+    "electron": "44.3.0",
     "electron-builder": "26.16.1"
   },
   "build": {
